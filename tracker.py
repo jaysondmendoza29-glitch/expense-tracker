@@ -1,7 +1,7 @@
 # Project: Expense Tracker
-# Installment: 3 - The Tracker Does Math
-# Author: Mark Jayson D. Mendoza
-# A simple expense tracker that talks to the user and does math.
+# Installment 4: The Tracker Makes Decisions
+# Author: Jayson Mendoza
+# A simple expense tracker that accepts two expenses and makes decisions.
 
 print("=" * 40)
 print("\tEXPENSE TRACKER")
@@ -23,9 +23,30 @@ item1 = input("First expense? ")
 amount1 = float(input("Amount? "))
 subtotal = subtotal + amount1
 
+if amount1 > 200:
+    print("  Huge expense - are you sure?")
+elif amount1 > 100:
+    print("  Big expense.")
+elif amount1 > 50:
+    print("  Moderate expense.")
+else:
+    print("  Small expense.")
+
 item2 = input("Second expense? ")
 amount2 = float(input("Amount? "))
 subtotal = subtotal + amount2
+
+if amount2 > 200:
+    print("  Huge expense - are you sure?")
+elif amount2 > 100:
+    print("  Big expense.")
+elif amount2 > 50:
+    print("  Moderate expense.")
+else:
+    print("  Small expense.")
+
+if amount1 > 100 and amount2 > 100:
+    print("  Two big expenses in a row - slow down!")
 
 average = subtotal / 2
 
@@ -41,12 +62,17 @@ print("-" * 40)
 print("SUMMARY")
 print(f" - {item1}:\t\t${amount1}")
 print(f" - {item2}:\t\t${amount2}")
-print(f"Subtotal:\t\t${subtotal:.2f}")
-print(f"Average:\t\t${average:.2f}")
-print(f"Tax ({float(tax_percent):.1f}%):\t\t${tax:.2f}")
-print(f"Grand total:\t\t${total:.2f}")
-print(f"Over budget?\t\t{over_budget}")
-print(f"Left in budget:\t\t${left:.2f}")
-print("-" * 40)
+print(f"Subtotal:\t\t${subtotal}")
+print(f"Average:\t\t${average}")
+print(f"Tax ({float(tax_percent)}%):\t\t${tax}")
+print(f"Grand total:\t\t${total}")
 
-print(f"Made by: {name} | Installment 3")
+if over_budget:
+    print(f"Over budget by ${total - budget}!")
+elif total > budget * 0.9:
+    print(f"Careful: only ${left} left.")
+else:
+    print(f"Within budget. ${left} left.")
+
+print("-" * 40)
+print(f"Made by: {name} | Installment 4")
